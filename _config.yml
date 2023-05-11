@@ -56,4 +56,4 @@ plugins:
 
 domain: codxse.github.io
 url: https://codxse.github.io
-baseurl: codxse.github.io
+baseurl: /
