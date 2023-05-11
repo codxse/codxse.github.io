@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title:  "Moving (again) to Jekyll platform"
