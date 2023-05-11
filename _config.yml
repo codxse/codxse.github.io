@@ -54,6 +54,6 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
-domain: codxse.github.io
-url: https://codxse.github.io
-baseurl: /
+# domain: codxse.github.io
+# url: https://codxse.github.io
+# baseurl: /
