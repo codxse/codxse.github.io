@@ -54,12 +54,12 @@ class PointPerson implements Person {
 ```
 
 ### Kotlin
-```kt
+```kotlin
 fun not(f: (Int) -> Boolean): (Int) -> Boolean {
         return {n -> !f.invoke(n)}
     }
-``
-`
+```
+
 It doesn't stop there. Jekyll's static nature means you can bid farewell to backend maintenance headaches.
 
 *Happy coding, happy blogging!*
