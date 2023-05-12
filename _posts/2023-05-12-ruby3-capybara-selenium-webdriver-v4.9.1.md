@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  "ArgumentError:Error on Rails 3.0 and Selenium Webdriver v4.9.1"
+title:  "ArgumentError on Rails 3.0 and Selenium Webdriver v4.9.1"
 date:   2023-05-12 18:00:16 +0700
 categories: rails
 ---
-I have a quest, upgrading ruby 2.7 to ruby 3.0 on the Rails app. We use rspec with Capybara and Selenium to do e2e testing. I don't expect the upgrade will be smooth, it should be any adjustment.
+I have a task, upgrading Ruby 2.7 to Ruby 3.0 on the Rails app. We use RSpec with Capybara and Selenium for end-to-end testing. I did not expect the upgrade to be smooth, knowing there would likely be some adjustments.
 
-Ruby 3 introduce a new way to use [keyword arguments](https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/). As expected, I need to adjust that feature.
+Ruby 3 introduce a new way to use [keyword arguments](https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/). As expected, I needed to adjust to this feature.
 
-Back to upgrading ruby 2.7 to ruby 3.0, when I run page testing with capybara and selenium, I got error:
+During the upgrade from Ruby 2.7 to Ruby 3.0, when I ran page testing with Capybara and Selenium, I encountered an error:
 
 ```sh
 68) Manage Virtual Gifts can create, edit virtual gift and assign to stream using content targetings
@@ -28,7 +28,7 @@ Back to upgrading ruby 2.7 to ruby 3.0, when I run page testing with capybara an
             #   /usr/local/bundle/gems/selenium-webdriver-4.9.1/lib/selenium/webdriver/common/port_prober.rb:35:in `initialize'
 ```
 
-and the very bottom it also show:
+At the very bottom, it also showed:
 
 ```sh
 68.2) Failure/Error:
@@ -44,11 +44,13 @@ and the very bottom it also show:
               wrong number of arguments (given 2, expected 0..1)
 ```
 
-So I look at the doc and found the similar issue, [ArgumentError: wrong number of arguments](https://github-com.translate.goog/teamcapybara/capybara/issues/2666?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp).
+So I looked at the documentation and found a similar issue, [ArgumentError: wrong number of arguments](https://github-com.translate.goog/teamcapybara/capybara/issues/2666?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp).
 
-So I downgrade the Selenium Webdriver to v4.9.0 for now until the patch released.
+The issue arises from the fact that Ruby 3.0.0 introduces a new way to set keyword arguments, and Selenium v4.9.1 doesn't handle it properly.
 
-I ran again the test. Not it passed
+So I sought a solution, and some folks suggested that v4.9.0 works without needing to adjust the keyword arguments. Consequently, I downgraded the Selenium Webdriver to v4.9.0 for now, until the patch is released.
+
+I ran again the test. Now it passed
 
 ```sh
 rspec ./spec/features/admin/app_download_banner/add_app_download_banner_spec.rb
@@ -75,3 +77,10 @@ Finished in 9.51 seconds (files took 2.51 seconds to load)
 1 example, 0 failures
 ```
 
+So for now I am using: 
+
+- ruby v3.0.6
+- capybara v3.39.0
+- selenium-webdriver v4.9.0
+
+Hope this help.
