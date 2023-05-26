@@ -2,7 +2,7 @@
 layout: post
 title: "Testing Next.js App with Jest and RTL"
 date: 2023-05-17 20:00:00 +0700
-categories: react, next.js
+categories: Next.js
 ---
 Next.js is like the Swiss army knife of front-end app creation. With the release of Next.js v13, it got even better, introducing server components and other thrilling features.
 
