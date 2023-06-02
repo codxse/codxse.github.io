@@ -440,3 +440,50 @@ public void displaySeparator() { ... }
 ```
 
 In conclusion, named and default arguments in Kotlin provide a more readable and concise way to work with functions, reducing the need for function overloading that we typically see in languages like Java.
+
+#### Extension Functions
+
+Unlike Java, Kotlin allows you to extend a class with new functionality without having to inherit from the class. This is achieved using special declarations called extensions.
+
+For instance, let's add a `lastChar` method to the `String` class:
+
+```kotlin
+fun String.lastChar() = this.get(this.length - 1)
+```
+
+In the above example, `this` refers to the `String` instance. Note that `this` can be omitted, allowing us to call the method without explicitly typing `this`:
+
+```kotlin
+fun String.lastChar() = get(length - 1)
+```
+
+It's important to note that you can't call extension functions everywhere. They are only accessible within the class they extend, or when imported:
+
+```kotlin
+import com.example.util.lastChar
+```
+
+After importing the extension function, you can call it like this
+
+```kotlin
+import com.example.util.lastChar
+
+val c: Char = "abc".lastChar()
+```
+
+The extension function will be visible in autocompletion.
+
+Extensions are the reason why Kotlin's standard library is relatively small. Kotlin does not have its own extensive SDK; it's largely the Java SDK, enhanced with these extensions.
+
+Let's consider an example we've previously discussed. We introduced the `to` syntax, which is actually implemented in Kotlin as just an extension:
+
+```kotlin
+infix fun <A, B> A.to(that: B) = Pair(this, that)
+```
+
+Kotlin even supports `infix` notation, which allows the function to be called between the two arguments without parentheses or a dot. Actually, `to` can also be used in a regular form:
+
+```kotlin
+"Answers".to(42)
+"hot".to(Color.RED)
+```
